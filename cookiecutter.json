@@ -1,0 +1,11 @@
+{
+    "python_version": ">=3.11",
+    "pdm_version": "2.19.1",
+    "nox_python_versions": "3.11, 3.12",
+    "project_name": "python-pdm-base",
+    "package_name": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "project_description": "A new Python project",
+    "author_name": "Your Name",
+    "email": "your.email@example.com",
+    "version": "0.1.0"
+}
