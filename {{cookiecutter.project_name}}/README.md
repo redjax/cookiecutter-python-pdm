@@ -4,7 +4,7 @@
 
 ## Setup
 
-This project uses PDM for dependency management. To get started, ensure you have PDM installed.
+This project uses [`PDM`](https://pdm-project.com) for dependency management. To get started, ensure you have `pdm` installed.
 
 ```bash
 pdm install
