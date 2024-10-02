@@ -45,7 +45,7 @@ log: logging.Logger = logging.getLogger(__name__)
 
 ## Define versions to test
 PY_VERSIONS: list[str] = [
-    {% for version in cookiecutter.python_versions.split(',') %}
+    {% for version in cookiecutter.nox_python_versions.split(',') %}
     "{{ version.strip() }}"{% if not loop.last %},{% endif %}
     {% endfor %}
 ]

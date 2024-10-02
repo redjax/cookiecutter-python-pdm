@@ -9,8 +9,10 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = "{{ cookiecutter.python_version }}"
 
+dependencies = []
+
 [build-system]
-requires = ["pdm"]
+requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.pdm]

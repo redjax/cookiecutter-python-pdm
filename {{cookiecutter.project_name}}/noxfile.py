@@ -39,7 +39,13 @@ try:
         "nox_extra module detected, enhancements from nox_extra.nox_utils are now available."
     )
 except ImportError:
-    log.error(f"Unable to import nox_utils.")
+    log.error("Unable to import nox_utils.")
+
+try:
+    ## Import pytest sessions
+    import nox_pytest_sessions
+except ImportError:
+    log.error("Unable to import pytest sessions.")
 
 ## Define versions to test
 PY_VERSIONS: list[str] = nox_utils.PY_VERSIONS
