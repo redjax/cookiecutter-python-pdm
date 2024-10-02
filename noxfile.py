@@ -53,6 +53,7 @@ def install_cookiecutter_sandbox(session: nox.Session):
     session.install("cookiecutter")
 
     log.info("Starting cookiecutter template render")
+
     answer_prompts = input("Answer project creation prompts (Y/N)? ")
     answer_prompts = answer_prompts.strip().lower()
 
@@ -61,6 +62,35 @@ def install_cookiecutter_sandbox(session: nox.Session):
             session.run("cookiecutter", ".", "--output-dir=sandbox/")
         case "n" | "no":
             session.run("cookiecutter", ".", "--no-input", "--output-dir=sandbox/")
+        case _:
+            log.error(f"Invalid choice: {answer_prompts}. Must by 'Y' or 'N'.")
+
+            return
+
+
+@nox.session(name="new-cookiecutter-project")
+def create_new_cookiecutter_project(session: nox.Session):
+    session.install("cookiecutter")
+
+    log.info("Creating new project from cookiecutter template.")
+
+    proj_dir = input(
+        "Path to new cookiecutter project (i.e. /home/user/some-python-project): "
+    )
+    proj_dir.strip().lower()
+
+    if Path(proj_dir).exists():
+        log.warning(f"Path '{proj_dir}' already exists. Skipping template creation")
+        return
+
+    answer_prompts = input("Answer project creation prompts (Y/N)? ")
+    answer_prompts = answer_prompts.strip().lower()
+
+    match answer_prompts:
+        case "y" | "yes":
+            session.run("cookiecutter", ".", f"--output-dir={proj_dir}")
+        case "n" | "no":
+            session.run("cookiecutter", ".", "--no-input", f"--output-dir={proj_dir}")
         case _:
             log.error(f"Invalid choice: {answer_prompts}. Must by 'Y' or 'N'.")
 
