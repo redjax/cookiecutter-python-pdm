@@ -6,7 +6,7 @@ authors = [
     { name = "{{ cookiecutter.author_name }}", email = "{{ cookiecutter.email }}" },
 ]
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "{{ cookiecutter.license }}" }
 requires-python = "{{ cookiecutter.python_version }}"
 
 dependencies = [
