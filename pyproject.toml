@@ -2,13 +2,12 @@
 name = "cookiecutter-python-pdm"
 version = "0.1.0"
 description = "Default template for PDM package"
-authors = [
-    {name = "redjax", email = "none@none.com"},
+authors = [{ name = "redjax", email = "none@none.com" }]
+dependencies = [
 ]
-dependencies = []
 requires-python = "==3.11.*"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
 
 [tool.pdm]

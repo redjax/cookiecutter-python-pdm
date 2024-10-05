@@ -54,18 +54,20 @@ def install_cookiecutter_sandbox(session: nox.Session):
 
     log.info("Starting cookiecutter template render")
 
-    answer_prompts = input("Answer project creation prompts (Y/N)? ")
+    answer_prompts = input("Answer project creation prompts? (Y)/N: ")
     answer_prompts = answer_prompts.strip().lower()
+
+    cookiecutter_cmd: list[str] = ["cookiecutter", ".", "--output-dir=sandbox/"]
 
     match answer_prompts:
         case "y" | "yes":
-            session.run("cookiecutter", ".", "--output-dir=sandbox/")
+            pass
         case "n" | "no":
-            session.run("cookiecutter", ".", "--no-input", "--output-dir=sandbox/")
+            cookiecutter_cmd.append("--no-input")
         case _:
-            log.error(f"Invalid choice: {answer_prompts}. Must by 'Y' or 'N'.")
+            log.warning(f"Invalid choice: {answer_prompts}. Defaulting to 'Y'")
 
-            return
+    session.run(*cookiecutter_cmd)
 
 
 @nox.session(name="new-cookiecutter-project")

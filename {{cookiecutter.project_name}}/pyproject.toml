@@ -9,7 +9,30 @@ readme = "README.md"
 license = { text = "MIT" }
 requires-python = "{{ cookiecutter.python_version }}"
 
-dependencies = []
+dependencies = [
+    {%- if cookiecutter.data_pkgs %}
+    "pydantic>=2.9.2",
+    "pandas>=2.2.3",
+    "pyarrow>=17.0.0",
+    {%- endif %}
+    {%- if cookiecutter.config_pkgs %}
+    "dynaconf>=3.2.6",
+    {%- if not cookiecutter.data_pkgs %}
+    "pydantic>=2.9.2",
+    {%- endif %}
+    {%- endif %}
+    {%- if cookiecutter.http_pkgs %}
+    "httpx>=0.27.2",
+    "hishel>=0.0.32",
+    {%- endif %}
+    {%- if cookiecutter.sqlalchemy %}
+    "sqlalchemy>=2.0.35",
+    {%- endif %}
+    {%- if cookiecutter.jupyter %}
+    "jupyter>=1.1.1",
+    "ipykernel>=6.29.5",
+    {%- endif %}
+]
 
 [build-system]
 requires = ["pdm-backend"]
@@ -22,8 +45,14 @@ package-dir = { "" = "src" }
 main = "{{ cookiecutter.package_name }}.main:main"
 
 [tool.pdm.dev-dependencies]
-# Development dependencies
-dev = ["nox", "ruff", "uv"]
+dev = [
+    "nox>=2024.4.15",
+    "uv>=0.4.18",
+    "ruff>=0.6.9",
+    {%- if cookiecutter.pytest %}
+    "pytest>=8.3.3",
+    {%- endif %}
+]# Development dependencies
 
 [tool.ruff]
 target-version = "py311"
