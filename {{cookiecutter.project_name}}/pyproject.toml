@@ -39,6 +39,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.pdm]
+distribution = {% if cookiecutter.package_dist %}true{% else %}false{% endif %}
 package-dir = { "" = "src" }
 
 [tool.pdm.scripts]
@@ -52,10 +53,10 @@ dev = [
     {%- if cookiecutter.pytest %}
     "pytest>=8.3.3",
     {%- endif %}
-]# Development dependencies
+]
 
 [tool.ruff]
-target-version = "py311"
+target-version = "{{ cookiecutter.ruff_pyversion }}"
 line-length = 88
 
 [tool.ruff.lint]
